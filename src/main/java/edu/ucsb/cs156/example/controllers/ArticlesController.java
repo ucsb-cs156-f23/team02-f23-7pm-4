@@ -62,7 +62,7 @@ public class ArticlesController extends ApiController {
 
         Articles article = new Articles();
         article.setTitle(title);
-        article.setURL(url);
+        article.setUrl(url);
         article.setExplanation(explanation);
         article.setEmail(email);
         article.setDateAdded(dateAdded);
