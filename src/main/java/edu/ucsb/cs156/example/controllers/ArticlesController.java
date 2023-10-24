@@ -41,13 +41,13 @@ public class ArticlesController extends ApiController {
     @GetMapping("/all")
     public Iterable<Articles> allArticles() {
         Iterable<Articles> article = articlesRepository.findAll();
-        return dates;
+        return article;
     }
 
     @Operation(summary= "Create a new article")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public Articles postArticles(
+    public Articles postArticle(
             @Parameter(name="title") @RequestParam String title,
             @Parameter(name="url") @RequestParam String url,
             @Parameter(name="explanation") @RequestParam String explanation,
@@ -60,14 +60,14 @@ public class ArticlesController extends ApiController {
 
         log.info("localDateTime={}", dateAdded);
 
-        Articles articles = new Articles();
-        articles.setTitle(title);
-        articles.setURL(url);
-        articles.setExplanation(explanation);
-        articles.setEmail(email);
-        articles.setDateAdded(dateAdded);
+        Articles article = new Articles();
+        article.setTitle(title);
+        article.setURL(url);
+        article.setExplanation(explanation);
+        article.setEmail(email);
+        article.setDateAdded(dateAdded);
 
-        Articles savedArticles = articlesRepository.save(articles);
-        return savedArticles;
+        Articles savedArticle = articlesRepository.save(article);
+        return savedArticle;
     }
 }
