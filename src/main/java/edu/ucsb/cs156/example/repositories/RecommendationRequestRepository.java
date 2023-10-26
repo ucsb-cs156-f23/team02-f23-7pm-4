@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecommendationRequestRepository extends CrudRepository<RecommendationRequest, Long> {
-  Iterable<RecommendationRequest> findAllByQuarterYYYYQ(String quarterYYYYQ);
+  //Iterable<RecommendationRequest> findAllByQuarterYYYYQ(String quarterYYYYQ);
 }
