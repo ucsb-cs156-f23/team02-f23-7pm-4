@@ -84,7 +84,7 @@ public class MenuItemReviewController extends ApiController {
     }
 
     
-
+*/
     @Operation(summary= "Delete a menu item review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
@@ -96,7 +96,7 @@ public class MenuItemReviewController extends ApiController {
         menuItemReviewRepository.delete(menuItemReview);
         return genericMessage("Menu item review with id %s deleted".formatted(id));
     }
-
+/* 
     @Operation(summary= "Update a single menu item review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
