@@ -59,14 +59,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .andExpect(status().is(200)); // logged
         }
 
-                /*
-            * requesterEmail;
-        private String teamId;
-        private String tableOrBreakoutRoom;
-        private LocalDateTime requestTime;
-        private String explanation;
-        private boolean solved DELETE
-            */
+            
 
         @WithMockUser(roles = { "USER" })
         @Test
@@ -146,7 +139,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
 
                 when(helpRequestRepository.save(eq(helpRequest1))).thenReturn(helpRequest1);
 
-                ///api/HelpRequest/post?requesterEmail=cgaucho%40ucsb.edu&teamId=s22-5pm-3&tableOrBreakoutRoom=7&requestTime=2022-01-03T00%3A00%3A00&explanation=Need%20help%20with%20Swagger-ui&solved=false
+                
                 // act 
                 MvcResult response = mockMvc.perform(
                                 post("/api/HelpRequest/post?requesterEmail=cgaucho@ucsb.edu&teamId=s22-5pm-3&tableOrBreakoutRoom=7&requestTime=2022-01-03T00:00:00&explanation=Need help with Swagger-ui&solved=true")
