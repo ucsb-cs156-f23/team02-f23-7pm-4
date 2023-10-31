@@ -78,15 +78,15 @@ public class HelpRequestController extends ApiController {
         return savedHelpRequest;
     }
 
-    @Operation(summary= "Get a single date") //TODO: Implement
+    @Operation(summary= "Get a single help request") 
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
-    public UCSBDate getById(
+    public HelpRequest getById(
             @Parameter(name="id") @RequestParam Long id) {
-        UCSBDate ucsbDate = ucsbDateRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBDate.class, id));
+        HelpRequest helpRequest = helpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        return ucsbDate;
+        return helpRequest;
     }
 
     
