@@ -201,7 +201,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 assertEquals("EntityNotFoundException", json.get("type"));
                 assertEquals("MenuItemReview with id 7 not found", json.get("message"));
         }
-
+*/
 
         // Tests for DELETE /api/ucsbdates?id=... 
 
@@ -224,7 +224,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/menuitemreviews?id==15")
+                                delete("/api/menuitemreview?id=15")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -233,7 +233,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 verify(menuItemReviewRepository, times(1)).delete(any());
 
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("MenuItemReview with id 15 deleted", json.get("message"));
+                assertEquals("Menu item review with id 15 deleted", json.get("message"));
         }
         
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -246,7 +246,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/menuitemreviews?id=15")
+                                delete("/api/menuitemreview?id=15")
                                                 .with(csrf()))
                                 .andExpect(status().isNotFound()).andReturn();
 
@@ -254,7 +254,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 verify(menuItemReviewRepository, times(1)).findById(15L);
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("MenuItemReview with id 15 not found", json.get("message"));
-        }
+        }/* 
 
         // Tests for PUT /api/ucsbdates?id=... 
 
