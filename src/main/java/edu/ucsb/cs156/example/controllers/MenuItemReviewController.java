@@ -1,4 +1,4 @@
-/*package edu.ucsb.cs156.example.controllers;
+package edu.ucsb.cs156.example.controllers;
 
 import edu.ucsb.cs156.example.entities.MenuItemReview;
 import edu.ucsb.cs156.example.errors.EntityNotFoundException;
@@ -70,7 +70,7 @@ public class MenuItemReviewController extends ApiController {
         MenuItemReview savedMenuItemReview = menuItemReviewRepository.save(menuItemReview);
 
         return savedMenuItemReview;
-    }
+    }/*             
 
     @Operation(summary= "Get a single menu item review")
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -83,7 +83,7 @@ public class MenuItemReviewController extends ApiController {
         return menuItemReview;
     }
 
-    /* 
+    
 
     @Operation(summary= "Delete a menu item review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -116,5 +116,5 @@ public class MenuItemReviewController extends ApiController {
         menuItemReviewRepository.save(menuItemReview);
 
         return menuItemReview;
-    }
-}*/ 
+    }*/
+}
