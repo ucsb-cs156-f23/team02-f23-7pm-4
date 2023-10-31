@@ -71,16 +71,27 @@ import java.time.LocalDateTime;
 <span class="fc" id="L71">        return savedArticle;</span>
     }
 
-    @Operation(summary= &quot;Delete an Article&quot;)
+    @Operation(summary= &quot;Get a single article&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
+    @GetMapping(&quot;&quot;)
+    public Articles getById(
+            @Parameter(name=&quot;id&quot;) @RequestParam Long id) {
+<span class="fc" id="L79">        Articles article = articlesRepository.findById(id)</span>
+<span class="fc" id="L80">                .orElseThrow(() -&gt; new EntityNotFoundException(Articles.class, id));</span>
+
+<span class="fc" id="L82">        return article;</span>
+    }
+
+    @Operation(summary= &quot;Delete an article&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @DeleteMapping(&quot;&quot;)
     public Object deleteArticle(
         @Parameter(name=&quot;id&quot;) @RequestParam Long id) {
-<span class="fc" id="L79">        Articles article = articlesRepository.findById(id)</span>
-<span class="fc" id="L80">                .orElseThrow(() -&gt; new EntityNotFoundException(Articles.class, id));</span>
+<span class="fc" id="L90">        Articles article = articlesRepository.findById(id)</span>
+<span class="fc" id="L91">                .orElseThrow(() -&gt; new EntityNotFoundException(Articles.class, id));</span>
 
-<span class="fc" id="L82">        articlesRepository.delete(article);</span>
-<span class="fc" id="L83">        return genericMessage(&quot;Article with id %s deleted&quot;.formatted(id));</span>
+<span class="fc" id="L93">        articlesRepository.delete(article);</span>
+<span class="fc" id="L94">        return genericMessage(&quot;Article with id %s deleted&quot;.formatted(id));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
