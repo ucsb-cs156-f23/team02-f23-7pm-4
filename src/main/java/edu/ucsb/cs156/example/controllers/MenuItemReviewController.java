@@ -70,7 +70,7 @@ public class MenuItemReviewController extends ApiController {
         MenuItemReview savedMenuItemReview = menuItemReviewRepository.save(menuItemReview);
 
         return savedMenuItemReview;
-    }/*             
+    }         
 
     @Operation(summary= "Get a single menu item review")
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -83,8 +83,6 @@ public class MenuItemReviewController extends ApiController {
         return menuItemReview;
     }
 
-    
-*/
     @Operation(summary= "Delete a menu item review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
