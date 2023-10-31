@@ -19,13 +19,8 @@ public class UCSBDiningCommonsMenuItem {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private String code;
-  private String name;
-  private boolean hasSackMeal;
-  private boolean hasTakeOutMeal;
-  private boolean hasDiningCam;
-  private Double latitude;
-  private Double longitude;
+
   private String diningCommonsCode;
+  private String name;
   private String station;
 }
