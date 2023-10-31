@@ -61,5 +61,16 @@ import javax.validation.Valid;
 <span class="fc" id="L61">        return savedOrganization;</span>
     }
 
+    @Operation(summary= &quot;Get a single organization&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
+    @GetMapping(&quot;&quot;)
+    public UCSBOrganizations getByCode(
+            @Parameter(name=&quot;code&quot;) @RequestParam String code) {
+<span class="fc" id="L69">        UCSBOrganizations organization = ucsbOrganizationsRepository.findById(code)</span>
+<span class="fc" id="L70">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganizations.class, code));</span>
+
+<span class="fc" id="L72">        return organization;</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
