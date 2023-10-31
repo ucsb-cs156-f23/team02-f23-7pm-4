@@ -127,4 +127,57 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
                 assertEquals(expectedJson, responseString);
         }
 
+
+        // Tests for GET /api/UCSBDiningCommonsMenuItem?id=...
+
+        @Test
+        public void logged_out_users_cannot_get_by_id() throws Exception {
+                mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem?id=1"))
+                                .andExpect(status().is(403)); // logged out users can't get by id
+        }
+
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
+
+                // arrange
+
+                UCSBDiningCommonsMenuItem ucsbmenuitem1 = UCSBDiningCommonsMenuItem.builder()
+                .diningCommonsCode("examplecode").name("testname").station("teststation").build();
+                
+                when(ucsbDiningCommonsMenuItemRepository.findById(eq(1L))).thenReturn(Optional.of(ucsbmenuitem1));
+
+                // act
+                MvcResult response = mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem?id=1"))
+                                .andExpect(status().isOk()).andReturn();
+
+                // assert
+
+                verify(ucsbDiningCommonsMenuItemRepository, times(1)).findById(eq(1L));
+                String expectedJson = mapper.writeValueAsString(ucsbmenuitem1);
+                String responseString = response.getResponse().getContentAsString();
+                assertEquals(expectedJson, responseString);
+        }
+
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_that_logged_in_user_can_get_by_id_when_the_id_does_not_exist() throws Exception {
+
+                // arrange
+
+                when(ucsbDiningCommonsMenuItemRepository.findById(eq(100L))).thenReturn(Optional.empty());
+
+                // act
+                MvcResult response = mockMvc.perform(get("/api/UCSBDiningCommonsMenuItem?id=100"))
+                                .andExpect(status().isNotFound()).andReturn();
+
+                // assert
+
+                verify(ucsbDiningCommonsMenuItemRepository, times(1)).findById(eq(100L));
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("EntityNotFoundException", json.get("type"));
+                assertEquals("UCSBDiningCommonsMenuItem with id 100 not found", json.get("message"));
+        }
+    
+
 }
