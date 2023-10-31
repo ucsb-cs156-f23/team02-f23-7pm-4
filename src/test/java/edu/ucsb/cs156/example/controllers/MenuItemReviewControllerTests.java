@@ -264,7 +264,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 // arrange
 
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
-                LocalDateTime ldt2 = LocalDateTime.parse("2022-04-20T00:00:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2022-03-20T00:00:00");
 
                 MenuItemReview menuItemReviewOrig = MenuItemReview.builder()
                                 .itemId(27L)
@@ -275,10 +275,10 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                                 .build();
 
                 MenuItemReview menuItemReviewEdited = MenuItemReview.builder()
-                                .itemId(27L)
-                                .reviewerEmail("cgaucho@ucsb.edu")
+                                .itemId(26L)
+                                .reviewerEmail("agaucho@ucsb.edu")
                                 .stars(4)
-                                .comments("bland af but edible I guess")
+                                .comments("bland af but edible I think")
                                 .dateReviewed(ldt2)
                                 .build();
 
