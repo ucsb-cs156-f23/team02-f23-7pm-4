@@ -128,17 +128,17 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
             RecommendationRequest recRequest1 = RecommendationRequest.builder()
                             .requesterEmail("hey@google.com")
                             .professorEmail("hardekopf@gmail.com")
-                            .explanation("for")
+                            .explanation("for phd purpose")
                             .dateRequested(ldt1)
                             .dateNeeded(ldt2)
-                            .done(false)
+                            .done(true)
                             .build();
 
             when(recommendationRequestRepository.save(eq(recRequest1))).thenReturn(recRequest1);
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("/api/recommendationrequest/post?requesterEmail=hey@google.com&professorEmail=hardekopf@gmail.com&explanation=for&dateRequested=2021-02-23T01:22:22&dateNeeded=2022-01-03T00:00:00&done=false")
+                            post("/api/recommendationrequest/post?requesterEmail=hey@google.com&professorEmail=hardekopf@gmail.com&explanation=for phd purpose&dateRequested=2021-02-23T01:22:22&dateNeeded=2022-01-03T00:00:00&done=true")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
