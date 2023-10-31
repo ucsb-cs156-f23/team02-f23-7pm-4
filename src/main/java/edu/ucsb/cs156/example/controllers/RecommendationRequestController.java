@@ -34,14 +34,14 @@ import java.time.LocalDateTime;
 public class RecommendationRequestController extends ApiController {
 
     @Autowired
-    RecommendationRequest recommendationrequest;
+    RecommendationRequestRepository recommendationrequestrepository;
 
     @Operation(summary= "List all recommendation requests")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<RecommendationRequest> allRecommendationRequest() {
-        Iterable<RecommendationRequest> recRequests = RecommendationRequestRepository.findAll();
-        return dates;
+        Iterable<RecommendationRequest> recRequests = recommendationrequestrepository.findAll();
+        return recRequests;
     }
 
     @Operation(summary= "Create a new recommendation request")
@@ -69,7 +69,7 @@ public class RecommendationRequestController extends ApiController {
         recommendationrequest.setDateNeeded(dateNeeded);
         recommendationrequest.setDone(done);
 
-        RecommendationRequest savedRecommendationRequest = RecommendationRequestRepository.save(ucsbDate);
+        RecommendationRequest savedRecommendationRequest = recommendationrequestrepository.save(recommendationrequest);
 
         return savedRecommendationRequest;
     }
