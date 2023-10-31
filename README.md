@@ -6,7 +6,7 @@ Instructions: <https://ucsb-cs156.github.io/f23/lab/team02.html>
 | Table                       | Team Member  | Github Id     |
 |-----------------------------|--------------|---------------|
 | `UCSBDiningCommonsMenuItem` | Eric         | EricM5        |
-| `UCSBOrganization`          | Audrey Zhu   | adoreven      |
+| `UCSBOrganization`          | Audrey Zhu   | audoreven      |
 | `RecommendationRequest`     | Ben          | bennyyyyy     |
 | `MenuItemReview`            | Alice        | alicezhong1   |
 | `HelpRequest`               | Sasha        | anisavic      |
