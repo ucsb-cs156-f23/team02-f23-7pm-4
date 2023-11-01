@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/team02-f23-7pm-4
 owner: ucsb-cs156-f23
 repo_name: team02-f23-7pm-4
-pull_requests: []
+pull_requests: [{"author":{"id":"U_kgDOCLmq2Q","is_bot":false,"login":"anisavic","name":"Sasha"},"headRefName":"Sasha-HelpRequest-Put","number":71,"title":"AN - Added PUT (edit) endpoint for a single record in HelpRequest.","url":"https://github.com/ucsb-cs156-f23/team02-f23-7pm-4/pull/71"}]
