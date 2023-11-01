@@ -143,13 +143,13 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
-        /* 
+        
 
         // Tests for GET /api/ucsbdates?id=...
 
         @Test
         public void logged_out_users_cannot_get_by_id() throws Exception {
-                mockMvc.perform(get("/api/menuitemreviews?id=7"))
+                mockMvc.perform(get("/api/menuitemreview?id=7"))
                                 .andExpect(status().is(403)); // logged out users can't get by id
         }
 
@@ -161,7 +161,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt = LocalDateTime.parse("2022-04-20T00:00:00");
 
                 MenuItemReview menuItemReview = MenuItemReview.builder()
-                                .itemId(27)
+                                .itemId(27L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(3)
                                 .comments("bland af but edible I guess")
@@ -171,7 +171,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 when(menuItemReviewRepository.findById(eq(7L))).thenReturn(Optional.of(menuItemReview));
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/menuitemreviews?id=7"))
+                MvcResult response = mockMvc.perform(get("/api/menuitemreview?id=7"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -191,7 +191,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 when(menuItemReviewRepository.findById(eq(7L))).thenReturn(Optional.empty());
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/menuitemreviews?id=7"))
+                MvcResult response = mockMvc.perform(get("/api/menuitemreview?id=7"))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
@@ -201,7 +201,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 assertEquals("EntityNotFoundException", json.get("type"));
                 assertEquals("MenuItemReview with id 7 not found", json.get("message"));
         }
-*/
+
 
         // Tests for DELETE /api/ucsbdates?id=... 
 
