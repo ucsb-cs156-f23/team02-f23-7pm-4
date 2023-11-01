@@ -65,7 +65,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
 
                 MenuItemReview menuItemReview1 = MenuItemReview.builder()
-                                .itemId(27)
+                                .itemId(27L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(3)
                                 .comments("bland af but edible I guess")
@@ -75,7 +75,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt2 = LocalDateTime.parse("2022-04-20T00:00:00");
 
                 MenuItemReview menuItemReview2 = MenuItemReview.builder()
-                                .itemId(29)
+                                .itemId(29L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(5)
                                 .comments("best veggie pizza ever")
@@ -122,7 +122,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
 
                 MenuItemReview menuItemReview1 = MenuItemReview.builder()
-                                .itemId(27)
+                                .itemId(27L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(3)
                                 .comments("bland af but edible I guess")
@@ -213,7 +213,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
 
                 MenuItemReview menuItemReview1 = MenuItemReview.builder()
-                                .itemId(27)
+                                .itemId(27L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(3)
                                 .comments("bland af but edible I guess")
@@ -254,7 +254,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 verify(menuItemReviewRepository, times(1)).findById(15L);
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("MenuItemReview with id 15 not found", json.get("message"));
-        }/* 
+        } 
 
         // Tests for PUT /api/ucsbdates?id=... 
 
@@ -264,10 +264,10 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 // arrange
 
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
-                LocalDateTime ldt2 = LocalDateTime.parse("2023-04-20T00:00:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2022-03-20T00:00:00");
 
                 MenuItemReview menuItemReviewOrig = MenuItemReview.builder()
-                                .itemId(27)
+                                .itemId(27L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(3)
                                 .comments("bland af but edible I guess")
@@ -275,9 +275,9 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                                 .build();
 
                 MenuItemReview menuItemReviewEdited = MenuItemReview.builder()
-                                .itemId(27)
-                                .reviewerEmail("cgaucho@ucsb.edu")
-                                .stars(3)
+                                .itemId(26L)
+                                .reviewerEmail("agaucho@ucsb.edu")
+                                .stars(4)
                                 .comments("bland af but edible I think")
                                 .dateReviewed(ldt2)
                                 .build();
@@ -288,7 +288,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/menuitemreviews?id=67")
+                                put("/api/menuitemreview?id=67")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -308,10 +308,10 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
         public void admin_cannot_edit_menuitemreview_that_does_not_exist() throws Exception {
                 // arrange
 
-                LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
 
                 MenuItemReview menuItemReviewEdited = MenuItemReview.builder()
-                                .itemId(27)
+                                .itemId(27L)
                                 .reviewerEmail("cgaucho@ucsb.edu")
                                 .stars(3)
                                 .comments("bland af but edible I think")
@@ -336,5 +336,5 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("MenuItemReview with id 67 not found", json.get("message"));
 
-        }*/
+        }
 }

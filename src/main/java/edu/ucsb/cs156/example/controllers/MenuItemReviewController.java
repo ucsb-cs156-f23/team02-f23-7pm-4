@@ -48,7 +48,7 @@ public class MenuItemReviewController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public MenuItemReview postMenuItemReview(
-        @Parameter(name="itemId") @RequestParam long itemId,
+        @Parameter(name="itemId") @RequestParam Long itemId,
             @Parameter(name="reviewerEmail") @RequestParam String reviewerEmail,
             @Parameter(name="stars") @RequestParam int stars,
             @Parameter(name="comments") @RequestParam String comments,
@@ -58,7 +58,7 @@ public class MenuItemReviewController extends ApiController {
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-        log.info("localDateTime={}", dateReviewed);
+        log.info("dateReviewed={}", dateReviewed);
 
         MenuItemReview menuItemReview = new MenuItemReview();
         menuItemReview.setItemId(itemId);
@@ -96,7 +96,7 @@ public class MenuItemReviewController extends ApiController {
         menuItemReviewRepository.delete(menuItemReview);
         return genericMessage("Menu item review with id %s deleted".formatted(id));
     }
-/* 
+
     @Operation(summary= "Update a single menu item review")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
@@ -116,5 +116,5 @@ public class MenuItemReviewController extends ApiController {
         menuItemReviewRepository.save(menuItemReview);
 
         return menuItemReview;
-    }*/
+    }
 }
