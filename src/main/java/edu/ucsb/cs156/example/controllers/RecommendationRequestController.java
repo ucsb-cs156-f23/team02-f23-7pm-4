@@ -86,6 +86,19 @@ public class RecommendationRequestController extends ApiController {
         return recommedationRequest;
     }
 
+
+    @Operation(summary= "Delete a RecommendationRequest")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("")
+    public Object deleteRecommendationRequest(
+            @Parameter(name="id") @RequestParam Long id) {
+        RecommendationRequest recommendationRequest = recommendationrequestrepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, id));
+
+        recommendationrequestrepository.delete(recommendationRequest);
+        return genericMessage("UCSBDate with id %s deleted".formatted(id));
+    }
+
     @Operation(summary= "Update a single recommendation request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
