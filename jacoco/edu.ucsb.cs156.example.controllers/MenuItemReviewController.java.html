@@ -48,7 +48,7 @@ import java.time.LocalDateTime;
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PostMapping(&quot;/post&quot;)
     public MenuItemReview postMenuItemReview(
-        @Parameter(name=&quot;itemId&quot;) @RequestParam long itemId,
+        @Parameter(name=&quot;itemId&quot;) @RequestParam Long itemId,
             @Parameter(name=&quot;reviewerEmail&quot;) @RequestParam String reviewerEmail,
             @Parameter(name=&quot;stars&quot;) @RequestParam int stars,
             @Parameter(name=&quot;comments&quot;) @RequestParam String comments,
@@ -58,7 +58,7 @@ import java.time.LocalDateTime;
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-<span class="fc" id="L61">        log.info(&quot;localDateTime={}&quot;, dateReviewed);</span>
+<span class="fc" id="L61">        log.info(&quot;dateReviewed={}&quot;, dateReviewed);</span>
 
 <span class="fc" id="L63">        MenuItemReview menuItemReview = new MenuItemReview();</span>
 <span class="fc" id="L64">        menuItemReview.setItemId(itemId);</span>
@@ -96,7 +96,7 @@ import java.time.LocalDateTime;
 <span class="fc" id="L96">        menuItemReviewRepository.delete(menuItemReview);</span>
 <span class="fc" id="L97">        return genericMessage(&quot;Menu item review with id %s deleted&quot;.formatted(id));</span>
     }
-/* 
+
     @Operation(summary= &quot;Update a single menu item review&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PutMapping(&quot;&quot;)
@@ -104,18 +104,18 @@ import java.time.LocalDateTime;
             @Parameter(name=&quot;id&quot;) @RequestParam Long id,
             @RequestBody @Valid MenuItemReview incoming) {
 
-        MenuItemReview menuItemReview = menuItemReviewRepository.findById(id)
-                .orElseThrow(() -&gt; new EntityNotFoundException(MenuItemReview.class, id));
+<span class="fc" id="L107">        MenuItemReview menuItemReview = menuItemReviewRepository.findById(id)</span>
+<span class="fc" id="L108">                .orElseThrow(() -&gt; new EntityNotFoundException(MenuItemReview.class, id));</span>
 
-        menuItemReview.setItemId(incoming.getItemId());
-        menuItemReview.setReviewerEmail(incoming.getReviewerEmail());
-        menuItemReview.setStars(incoming.getStars());
-        menuItemReview.setComments(incoming.getComments());
-        menuItemReview.setDateReviewed(incoming.getDateReviewed());
+<span class="fc" id="L110">        menuItemReview.setItemId(incoming.getItemId());</span>
+<span class="fc" id="L111">        menuItemReview.setReviewerEmail(incoming.getReviewerEmail());</span>
+<span class="fc" id="L112">        menuItemReview.setStars(incoming.getStars());</span>
+<span class="fc" id="L113">        menuItemReview.setComments(incoming.getComments());</span>
+<span class="fc" id="L114">        menuItemReview.setDateReviewed(incoming.getDateReviewed());</span>
 
-        menuItemReviewRepository.save(menuItemReview);
+<span class="fc" id="L116">        menuItemReviewRepository.save(menuItemReview);</span>
 
-        return menuItemReview;
-    }*/
+<span class="fc" id="L118">        return menuItemReview;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
