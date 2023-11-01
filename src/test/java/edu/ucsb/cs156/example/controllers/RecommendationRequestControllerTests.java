@@ -209,6 +209,64 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
                 assertEquals("RecommendationRequest with id 7 not found", json.get("message"));
         }
 
+
+
+        // Tests for DELETE /api/ucsbdates?id=...
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_can_delete_a_recommendation_request() throws Exception {
+                // arrange
+
+                LocalDateTime ldt1 = LocalDateTime.parse("2022-10-10T10:25:00");
+                LocalDateTime ldt2 = LocalDateTime.parse("2023-11-11T11:11:00");
+
+
+                RecommendationRequest recommedationRequest1 = RecommendationRequest.builder()
+                        .requesterEmail("bennyyyyy@gmail.com")
+                        .professorEmail("krintz@gmail.com")
+                        .explanation("for masters and possible phd")
+                        .dateRequested(ldt1)
+                        .dateNeeded(ldt2)
+                        .done(true)
+                        .build();
+
+
+                when(recommendationRequestRepository.findById(eq(15L))).thenReturn(Optional.of(recommedationRequest1));
+
+                // act
+                MvcResult response = mockMvc.perform(
+                                delete("/api/recommendationrequest?id=15")
+                                                .with(csrf()))
+                                .andExpect(status().isOk()).andReturn();
+
+                // assert
+                verify(recommendationRequestRepository, times(1)).findById(15L);
+                verify(recommendationRequestRepository, times(1)).delete(any());
+
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("RecommendationRequest with id 15 deleted", json.get("message"));
+        }
+
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_tries_to_delete_non_existant_recommendation_request_and_gets_right_error_message()
+                        throws Exception {
+                // arrange
+
+                when(recommendationRequestRepository.findById(eq(15L))).thenReturn(Optional.empty());
+
+                // act
+                MvcResult response = mockMvc.perform(
+                                delete("/api/recommendationrequest?id=15")
+                                                .with(csrf()))
+                                .andExpect(status().isNotFound()).andReturn();
+
+                // assert
+                verify(recommendationRequestRepository, times(1)).findById(15L);
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("RecommendationRequest with id 15 not found", json.get("message"));
+        }
+
         // Tests for PUT /api/recommendationrequest?id=...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -261,7 +319,6 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
         }
 
 
-        // This needs to be fixed
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
         public void admin_cannot_edit_recommendation_request_that_does_not_exist() throws Exception {

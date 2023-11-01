@@ -96,7 +96,7 @@ public class RecommendationRequestController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, id));
 
         recommendationrequestrepository.delete(recommendationRequest);
-        return genericMessage("UCSBDate with id %s deleted".formatted(id));
+        return genericMessage("RecommendationRequest with id %s deleted".formatted(id));
     }
 
     @Operation(summary= "Update a single recommendation request")
