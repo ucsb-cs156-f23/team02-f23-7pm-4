@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f23/team02-f23-7pm-4
 owner: ucsb-cs156-f23
 repo_name: team02-f23-7pm-4
-pull_requests: [{"author":{"id":"MDQ6VXNlcjQyNDg2NTk1","is_bot":false,"login":"Bennyyyyy","name":"Benny Conte"},"headRefName":"BC-RecRequest-Delete","number":70,"title":"Benny - Added Delete for single recommendation request","url":"https://github.com/ucsb-cs156-f23/team02-f23-7pm-4/pull/70"},{"author":{"id":"MDQ6VXNlcjQyNDg2NTk1","is_bot":false,"login":"Bennyyyyy","name":"Benny Conte"},"headRefName":"BC-RecRequest-Put","number":69,"title":"Benjamin - Added Put(Show) for single recommendation request","url":"https://github.com/ucsb-cs156-f23/team02-f23-7pm-4/pull/69"}]
+pull_requests: []
